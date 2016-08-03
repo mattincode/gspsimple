@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function getEmployee() {
+                var xmlhttp = new XMLHttpRequest();
+                //var url = "http://localhost:62953/api/employees/1";
+                var url = "https://oneref.securitas.se/gsp/ref/api/employees/1";
+                var server = window.location.hostname;
+                document.getElementById('employee').innerHTML = server;
+
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        //var myArr = JSON.parse(xmlhttp.responseText);
+                        var element = document.getElementById('employee');
+                        element.innerHTML = xmlhttp.responseText;
+                        //myFunction(myArr);
+                    }
+                };
+            
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }  
+
+            // function myFunction(arr) {
+            //     var out = "";
+            //     var i;
+            //     for(i = 0; i < arr.length; i++) {
+            //         out += '<a href="' + arr[i].url + '">' + 
+            //         arr[i].display + '</a><br>';
+            //     }
+            //     document.getElementById('employee').innerHTML = out;
+            // }                      
+        </script>        
+    </head>
+    <body>
+         <input type="button" value="GetEmployee" onclick="getEmployee()">
+         <div id='employee'></div>            
+    </body>
+</html>
